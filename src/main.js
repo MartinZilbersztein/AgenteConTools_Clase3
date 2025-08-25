@@ -40,6 +40,7 @@ const buscarPorNombreTool = tool({
     }),
     execute: ({ nombre }) => {
         // Tu código aquí
+        return estudiantes.buscarEstudiantePorNombre(nombre);
     },
 });
 
@@ -51,7 +52,7 @@ const buscarPorApellidoTool = tool({
         apellido: z.string().describe("El apellido del estudiante a buscar"),
     }),
     execute: ({ apellido }) => {
-       return;
+       return estudiantes.buscarEstudiantePorApellido(apellido);
     },
 });
 
@@ -65,7 +66,8 @@ const agregarEstudianteTool = tool({
         curso: z.string().describe("El curso del estudiante (ej: 4A, 4B, 5A)"),
     }),
     execute: ({ nombre, apellido, curso }) => {
-        return;
+        estudiantes.agregarEstudiante(nombre, apellido, curso);
+        return this.estudiantes;
     },
 });
 
@@ -75,7 +77,7 @@ const listarEstudiantesTool = tool({
     description: "Usa esta función para mostrar todos los estudiantes",
     parameters: z.object({}),
     execute: () => {
-        return;
+        return estudiantes.listarEstudiantes();
     },
 });
 
