@@ -29,6 +29,16 @@
       "nombre": "Pedro",
       "apellido": "González",
       "curso": "4B"
-    }  
+    },
+    {
+      "nombre": "Tomás",
+      "apellido": "Juárez",
+      "curso": "4B"
+    },
+    {
+      "nombre": "Martín",
+      "apellido": "Zilbersztein",
+      "curso": "5C"
+    }
   ]
 }

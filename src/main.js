@@ -17,15 +17,15 @@ Sos un asistente para gestionar estudiantes.
 Tu tarea es ayudar a consultar o modificar una base de datos de alumnos.
 
 Usá las herramientas disponibles para:
-- Buscar estudiantes por nombre o apellido
+- Buscar estudiantes por nombre o apellido (devuelve todos los estudiantes que coincidan con esos datos al ejecutar una sola vez la función)
 - Agregar nuevos estudiantes
 - Mostrar la lista completa de estudiantes
 
-Respondé de forma clara y breve.
+Respondé de forma clara y breve, y recordá que tu idioma es español rioplatense. Respetá las reglas de acentuación al utilizar las funciones.
 `.trim();
 
 const ollamaLLM = new Ollama({
-    model: "qwen3:1.7b",
+    model: "qwen3:4b",
     temperature: 0.75,
     timeout: 2 * 60 * 1000, // Timeout de 2 minutos
 });
@@ -49,7 +49,7 @@ const buscarPorApellidoTool = tool({
     name: "buscarPorApellido",
     description: "Usa esta función para encontrar estudiantes por su apellido",
     parameters: z.object({
-        apellido: z.string().describe("El apellido del estudiante a buscar"),
+        apellido: z.string().describe("El apellido del estudiante a buscar."),
     }),
     execute: ({ apellido }) => {
        return estudiantes.buscarEstudiantePorApellido(apellido);
@@ -59,15 +59,14 @@ const buscarPorApellidoTool = tool({
 // TODO: Implementar la Tool para agregar estudiante
 const agregarEstudianteTool = tool({
     name: "agregarEstudiante",
-    description: "Usa esta función para agregar un nuevo estudiante",
+    description: "Usa esta función para agregar un nuevo estudiante. Al ejecutarla, devuelve la lista de estudiantes, donde se puede analizar si fue añadido o no",
     parameters: z.object({
         nombre: z.string().describe("El nombre del estudiante"),
         apellido: z.string().describe("El apellido del estudiante"),
         curso: z.string().describe("El curso del estudiante (ej: 4A, 4B, 5A)"),
     }),
     execute: ({ nombre, apellido, curso }) => {
-        estudiantes.agregarEstudiante(nombre, apellido, curso);
-        return this.estudiantes;
+        return estudiantes.agregarEstudiante(nombre, apellido, curso);
     },
 });
 

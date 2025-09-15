@@ -30,7 +30,6 @@ class Estudiantes {
   // TODO: Implementar método para agregar estudiante
   agregarEstudiante(nombre, apellido, curso) {
     // Tu código aquí
-    
     this.estudiantes.push({nombre: nombre, apellido: apellido, curso: curso});
     this.guardarEstudiantes();
     return this.estudiantes;
@@ -39,14 +38,15 @@ class Estudiantes {
   // TODO: Implementar método para buscar estudiante por nombre
   buscarEstudiantePorNombre(nombre) {
     // Tu código aquí
-    const estudiantesReturn = this.estudiantes.filter(e=>e.nombre === nombre);
+    const estudiantesReturn = this.estudiantes.filter(e=>e.nombre.toUpperCase() == nombre.toUpperCase());
     return estudiantesReturn;
   }
 
   // TODO: Implementar método para buscar estudiante por apellido
   buscarEstudiantePorApellido(apellido) {
     // Tu código aquí
-    const estudiantesReturn = this.estudiantes.filter(e=>e.apellido === apellido);
+    const estudiantesReturn = this.estudiantes.filter(e=>e.apellido.toUpperCase() == apellido.toUpperCase());
+    console.log("estudiantes encontrados: " + estudiantesReturn)
     return estudiantesReturn;
   }
 
